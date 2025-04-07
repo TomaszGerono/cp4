@@ -35,7 +35,7 @@ public class CreditCard {
     }
 
     private static boolean isCreditBelowThreshold(BigDecimal initialCredit) {
-        return BigDecimal.valueOf(CREDIT_THRESHOLD).compareTo(initialCredit) > 0;
+        return BigDecimal.valueOf(CREDIT_THRESHOLD).compareTo(initialCredit) >= 0;
     }
 
     public BigDecimal getBalance() {
@@ -50,6 +50,9 @@ public class CreditCard {
     }
 
     private boolean canAfford(BigDecimal money) {
-        return this.balance.subtract(money).compareTo(BigDecimal.ZERO) >= 0;
+        return this.balance.subtract(money).compareTo(BigDecimal.ZERO) > -1;
+        // A < B , returns -1
+        // A == B , returns 0
+        // A > B , returns 1
     }
 }

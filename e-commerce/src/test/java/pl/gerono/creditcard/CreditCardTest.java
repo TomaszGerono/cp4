@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class CardTest {
+public class CreditCardTest {
 
     @Test
     void cardIsIdentifiedWithNumber() {
@@ -101,7 +101,7 @@ public class CardTest {
         card.withdraw(BigDecimal.valueOf(100));
         assertThrows(
                 NotEnoughMoneyException.class,
-                () -> card.withdraw(BigDecimal.valueOf(900))
+                () -> card.withdraw(BigDecimal.valueOf(950))
         );
     }
 
