@@ -8,4 +8,6 @@ public interface ProductRepository {
     void save(Product newProduct);
 
     Product loadProductById(String productId);
+
+    Product loadProductById();
 }

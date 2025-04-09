@@ -8,6 +8,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class DatabaseProductRepositoryTest {
 
+
+
     @Test
     void itStoresAndLoadsProduct() {
         Product product = thereIsProduct();
@@ -21,6 +23,11 @@ public class DatabaseProductRepositoryTest {
         assertEquals(product.getName(), loaded.getDescription());
     }
 
+    private ProductRepository thereIsProductRepository() {
+        return null;
+    }
+
+
     @Test
     void itLoadsAllProducts() {
         Product product = thereIsProduct();
@@ -31,5 +38,9 @@ public class DatabaseProductRepositoryTest {
         List<Product> products = repository.allProducts();
 
         assertEquals(1, products.size());
+    }
+
+    private Product thereIsProduct() {
+        return null;
     }
 }

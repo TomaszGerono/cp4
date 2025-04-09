@@ -30,4 +30,9 @@ public class ArrayListProductStorage implements ProductRepository {
                 .get(); // TECH
     }
 
+    @Override
+    public Product loadProductById() {
+        return null;
+    }
+
 }

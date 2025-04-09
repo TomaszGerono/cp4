@@ -23,6 +23,14 @@ public class HashMapRepositoryTest {
         assertEquals(product.getName(), loaded.getDescription());
     }
 
+    private ProductRepository thereIsProductRepository() {
+        return null;
+    }
+
+    private Product thereIsProduct() {
+        return null;
+    }
+
     @Test
     void itLoadsAllProducts() {
         Product product = thereIsProduct();

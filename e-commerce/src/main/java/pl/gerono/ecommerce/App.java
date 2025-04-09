@@ -1,16 +1,32 @@
 package pl.gerono.ecommerce;
 
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import pl.gerono.productcatalog.ArrayListProductStorage;
+import pl.gerono.productcatalog.ProductCatalog;
+
+@SpringBootApplication
 public class App {
     public static void main(String[] args) {
-//        var name = "Tomasz";
-//        System.out.println("Hello, " + name + "!");
+        System.out.println("it works");
+        SpringApplication.run(App.class, args);
+    }
 
-        int a = 2;
-        int b = 4;
-        int result = a + b;
+    @Bean
+    ProductCatalog createProductCatalog() {
+        ProductCatalog catalog = new ProductCatalog(
+                new ArrayListProductStorage()
+        );
 
-        if (result != 6) {
-            throw new IllegalStateException("Assertion error");
-        }
+        catalog.createProduct("nice one 1", "desc");
+        catalog.createProduct("nice one 2", "desc");
+        catalog.createProduct("nice one 3", "desc");
+        catalog.createProduct("nice one 4", "desc");
+        catalog.createProduct("nice one 5", "desc");
+        catalog.createProduct("nice one 6", "desc");
+
+        return catalog;
     }
 }
