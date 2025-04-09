@@ -6,18 +6,23 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ProductCatalogTest {
 
+
+    private ProductCatalog thereIsProductCatalog() {
+        return new ProductCatalog(
+                new HashMapProductRepositoryTest(
+
+                );
+        );
+    }
+
+
     @Test
-    void itAllowsToListProducts() {
-        ProductCatalog catalog = thereIsProductCatalog();
-
-        List<Product> products = catalog.allProducts();
-
-        assertTrue(products.isEmpty());
+    void itAllowsToLoadProductsByItsId() {
 
     }
 
-    private ProductCatalog thereIsProductCatalog() {
-        return new ProductCatalog();
+    @Test void itCantBeLowerThanZero() {
+
     }
 
     @Test
@@ -39,4 +44,34 @@ public class ProductCatalogTest {
 
         assertNotEquals(productId1, productId2);
     }
+
+
+    @Test
+    void itAllowsToChangeImage() {
+//        ProductCatalog catalog = thereIsProductCatalog();
+//        String productId = catalog.createProduct("Lego set 8083", "nice one");
+//
+//        catalog.changeImage(productId, "https://picsum.photos/id/237/200/300");
+//
+//        Product loaded = catalog.loadProductById(productId);
+//        assertEquals("https://picsum.photos/id/237/200/300", loaded.getImage());
+   }
+
+
+    @Test
+    void itAllowsToChangePrice() {
+
+    }
+
+    @Test
+    void itAllowsToListProducts() {
+        ProductCatalog catalog = thereIsProductCatalog();
+
+        List<Product> products = catalog.allProducts();
+
+        assertTrue(products.isEmpty());
+
+    }
+
 }
+
