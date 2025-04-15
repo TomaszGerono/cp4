@@ -1,4 +1,4 @@
-package pl.gerono.productcatalog;
+package pl.gerono.ecommerce.catalog;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -23,16 +23,10 @@ public class ArrayListProductStorage implements ProductRepository {
     }
 
     @Override
-    public Product loadProductById(String productId) {
+    public Product getProductById(String productId) {
         return products.stream()
                 .filter(product -> product.getId().equals(productId))
                 .findFirst()
                 .get(); // TECH
     }
-
-    @Override
-    public Product loadProductById() {
-        return null;
-    }
-
 }

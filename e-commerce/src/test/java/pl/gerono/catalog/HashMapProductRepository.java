@@ -1,4 +1,7 @@
-package pl.gerono.productcatalog;
+package pl.gerono.catalog;
+
+import pl.gerono.ecommerce.catalog.Product;
+import pl.gerono.ecommerce.catalog.ProductRepository;
 
 import java.util.List;
 
@@ -15,12 +18,8 @@ public class HashMapProductRepository implements ProductRepository {
     }
 
     @Override
-    public Product loadProductById(String productId) {
+    public Product getProductById(String productId) {
         return null;
     }
 
-    @Override
-    public Product loadProductById() {
-        return null;
-    }
 }

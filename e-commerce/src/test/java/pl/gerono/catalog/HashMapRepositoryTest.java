@@ -1,6 +1,8 @@
-package pl.gerono.productcatalog;
+package pl.gerono.catalog;
 
 import org.junit.jupiter.api.Test;
+import pl.gerono.ecommerce.catalog.Product;
+import pl.gerono.ecommerce.catalog.ProductRepository;
 
 import java.util.List;
 
@@ -16,7 +18,7 @@ public class HashMapRepositoryTest {
         // Act
         repository.save(product);
 
-        Product loaded = repository.loadProductById(product.getId());
+        Product loaded = repository.getProductById(product.getId());
 
         // Assert
         assertEquals(product.getId(), loaded.getId());

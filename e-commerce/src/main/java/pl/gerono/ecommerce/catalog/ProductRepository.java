@@ -1,4 +1,4 @@
-package pl.gerono.productcatalog;
+package pl.gerono.ecommerce.catalog;
 
 import java.util.List;
 
@@ -7,7 +7,6 @@ public interface ProductRepository {
 
     void save(Product newProduct);
 
-    Product loadProductById(String productId);
+    Product getProductById(String productId);
 
-    Product loadProductById();
 }

@@ -3,56 +3,43 @@ package pl.gerono.creditcard;
 import java.math.BigDecimal;
 
 public class CreditCard {
-    public static final int CREDIT_THRESHOLD = 100;
-    private final String cardNumber;
-    private BigDecimal initialCredit;
+    private BigDecimal creditLimit;
     private BigDecimal balance;
 
-    public CreditCard(String cardNumber) {
-        this.cardNumber = cardNumber;
-    }
+    public void assignCredit(BigDecimal creditLimit) {
+        if (isCreditAlreadyAssigned()) {
+            throw new CreditAlreadyAssignedException();
+        }
 
-    public String getNumber() {
-        return this.cardNumber;
-    }
-
-    public void assignCredit(BigDecimal initialCredit) {
-
-        if (isCreditBelowThreshold(initialCredit)) {
+        if (isCreditBelowThreshold(creditLimit)) {
             throw new CreditBelowThresholdException();
         }
 
-        if (isCreditAlreadyAssigned()) {
-            throw new CreditCantBeAssignedTwiceException();
-        }
-
-        this.initialCredit = initialCredit;
-        this.balance = initialCredit;
+        this.creditLimit = creditLimit;
+        this.balance = creditLimit;
     }
 
     private boolean isCreditAlreadyAssigned() {
-        return this.initialCredit != null;
+        return this.creditLimit != null;
     }
 
-    private static boolean isCreditBelowThreshold(BigDecimal initialCredit) {
-        return BigDecimal.valueOf(CREDIT_THRESHOLD).compareTo(initialCredit) >= 0;
+    private boolean isCreditBelowThreshold(BigDecimal creditLimit) {
+        return BigDecimal.valueOf(100).compareTo(creditLimit) > 0;
     }
 
     public BigDecimal getBalance() {
         return balance;
     }
 
-    public void withdraw(BigDecimal money) {
+    public void pay(BigDecimal money) {
         if (!canAfford(money)) {
             throw new NotEnoughMoneyException();
         }
+
         this.balance = this.balance.subtract(money);
     }
 
     private boolean canAfford(BigDecimal money) {
-        return this.balance.subtract(money).compareTo(BigDecimal.ZERO) > -1;
-        // A < B , returns -1
-        // A == B , returns 0
-        // A > B , returns 1
+        return this.balance.subtract(money).compareTo(BigDecimal.ZERO) > 0;
     }
 }

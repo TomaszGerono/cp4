@@ -1,6 +1,8 @@
-package pl.gerono.productcatalog;
+package pl.gerono.catalog;
 
 import org.junit.jupiter.api.Test;
+import pl.gerono.ecommerce.catalog.Product;
+import pl.gerono.ecommerce.catalog.ProductRepository;
 
 import java.util.List;
 
@@ -17,7 +19,7 @@ public class DatabaseProductRepositoryTest {
 
         repository.save(product);
 
-        Product loaded = repository.loadProductById(product.getId());
+        Product loaded = repository.getProductById(product.getId());
 
         assertEquals(product.getId(), loaded.getId());
         assertEquals(product.getName(), loaded.getDescription());

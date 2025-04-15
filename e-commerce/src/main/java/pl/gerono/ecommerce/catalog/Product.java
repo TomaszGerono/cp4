@@ -1,4 +1,4 @@
-package pl.gerono.productcatalog;
+package pl.gerono.ecommerce.catalog;
 
 import java.math.BigDecimal;
 import java.util.UUID;

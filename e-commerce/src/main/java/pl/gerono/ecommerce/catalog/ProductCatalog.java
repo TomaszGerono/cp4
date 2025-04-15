@@ -1,4 +1,4 @@
-package pl.gerono.productcatalog;
+package pl.gerono.ecommerce.catalog;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -30,10 +30,18 @@ public class ProductCatalog {
         return newProduct.getId();
     }
 
+    public String addProduct(String name, String description) {
+        UUID id = UUID.randomUUID();
+        Product newProduct = new Product(id, name, description);
+        productRepository.save(newProduct);
+
+        return newProduct.getId();
+    }
 
 
-    public Product loadProductById(String productId) {
-        return productRepository.loadProductById(productId);
+
+    public Product getProductById(String productId) {
+        return productRepository.getProductById(productId);
     }
 
     public void changePrice(String productId, BigDecimal newPrice) throws InvalidProductPriceException {
@@ -41,13 +49,11 @@ public class ProductCatalog {
             throw new InvalidProductPriceException();
         }  // DOMAIN
 
-        var loadedProduct = productRepository.loadProductById(productId);
+        var loadedProduct = productRepository.getProductById(productId);
         loadedProduct.changePrice(newPrice);
     }
 
-    public void changeImage(String productId, String url) {
 
-    }
 
 
 }

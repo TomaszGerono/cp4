@@ -12,7 +12,7 @@ const createProductHtml = (productData) => {
 
     `;
     const liElement = document.createElement("li");
-    liElement.innerHTML = template.trim*();
+    liElement.innerHTML = template.trim();
 
     return liElement;
 }
@@ -21,7 +21,8 @@ const createProductHtml = (productData) => {
 
 (() => {
     const productsListEl = document.querySelector('.productsList');
+
     getProducts()
-        .then(product => products.map(createProductHtml))
+        .then(products => products.map(createProductHtml))
         .then(productHtmlElements => productHtmlElements.forEach(el => productsListEl.appendChild(el)));
 })();
