@@ -1,4 +1,4 @@
-package pl.gerono.catalog;
+package pl.gerono.ecommerce.catalog;
 
 import org.junit.jupiter.api.Test;
 import pl.gerono.ecommerce.catalog.Product;
@@ -6,21 +6,21 @@ import pl.gerono.ecommerce.catalog.ProductRepository;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class DatabaseProductRepositoryTest {
-
-
-
+public class HashMapRepositoryTest {
     @Test
     void itStoresAndLoadsProduct() {
+        // Arange
         Product product = thereIsProduct();
         ProductRepository repository = thereIsProductRepository();
 
+        // Act
         repository.save(product);
 
         Product loaded = repository.getProductById(product.getId());
 
+        // Assert
         assertEquals(product.getId(), loaded.getId());
         assertEquals(product.getName(), loaded.getDescription());
     }
@@ -29,6 +29,9 @@ public class DatabaseProductRepositoryTest {
         return null;
     }
 
+    private Product thereIsProduct() {
+        return null;
+    }
 
     @Test
     void itLoadsAllProducts() {
@@ -40,9 +43,5 @@ public class DatabaseProductRepositoryTest {
         List<Product> products = repository.allProducts();
 
         assertEquals(1, products.size());
-    }
-
-    private Product thereIsProduct() {
-        return null;
     }
 }

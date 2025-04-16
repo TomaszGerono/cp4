@@ -85,9 +85,9 @@ public class CreditCardTest {
     void itAllowsToWithdrawSomeMoney() {
         var card = new CreditCard("1234-5678");
         card.assignCredit(BigDecimal.valueOf(1000));
-        card.withdraw(BigDecimal.valueOf(100));
-        card.withdraw(BigDecimal.valueOf(100));
-        card.withdraw(BigDecimal.valueOf(100));
+        card.pay(BigDecimal.valueOf(100));
+        card.pay(BigDecimal.valueOf(100));
+        card.pay(BigDecimal.valueOf(100));
         assertEquals(
                 BigDecimal.valueOf(700),
                 card.getBalance()
@@ -98,10 +98,10 @@ public class CreditCardTest {
     void cantWithdrawWhenNotEnoughMoney() {
         var card = new CreditCard("1234-5678");
         card.assignCredit(BigDecimal.valueOf(1000));
-        card.withdraw(BigDecimal.valueOf(100));
+        card.pay(BigDecimal.valueOf(100));
         assertThrows(
                 NotEnoughMoneyException.class,
-                () -> card.withdraw(BigDecimal.valueOf(950))
+                () -> card.pay(BigDecimal.valueOf(950))
         );
     }
 
@@ -110,7 +110,7 @@ public class CreditCardTest {
         var card = new CreditCard("1234-5678");
         card.assignCredit(BigDecimal.valueOf(1000));
         assertDoesNotThrow(
-                () -> card.withdraw(BigDecimal.valueOf(1000))
+                () -> card.pay(BigDecimal.valueOf(1000))
         );
     }
 }

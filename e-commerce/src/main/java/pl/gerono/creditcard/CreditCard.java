@@ -5,6 +5,11 @@ import java.math.BigDecimal;
 public class CreditCard {
     private BigDecimal creditLimit;
     private BigDecimal balance;
+    private String number;
+
+    public CreditCard(String number) {
+        number = number;
+    }
 
     public void assignCredit(BigDecimal creditLimit) {
         if (isCreditAlreadyAssigned()) {
@@ -41,5 +46,9 @@ public class CreditCard {
 
     private boolean canAfford(BigDecimal money) {
         return this.balance.subtract(money).compareTo(BigDecimal.ZERO) > 0;
+    }
+
+    public String getNumber() {
+        return number;
     }
 }

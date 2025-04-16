@@ -1,4 +1,4 @@
-package pl.gerono.catalog;
+package pl.gerono.ecommerce.catalog;
 
 import pl.gerono.ecommerce.catalog.Product;
 import pl.gerono.ecommerce.catalog.ProductRepository;

@@ -9,8 +9,8 @@ public class Product {
     private final String name;
     private final String description;
 
-    public UUID getProductId() {
-        return productId;
+    public String getProductId() {
+        return productId.toString();
     }
 
     public String getName() {

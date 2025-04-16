@@ -1,4 +1,4 @@
-package pl.gerono.catalog;
+package pl.gerono.ecommerce.catalog;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import pl.gerono.ecommerce.catalog.Product;
