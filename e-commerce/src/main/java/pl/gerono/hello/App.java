@@ -5,7 +5,7 @@ import java.util.Collections;
 public class App {
     public static void main(String[] args) {
         var name = "Tomasz";
-        System.out.println(String.format("Hello %s", name));
+        System.out.printf("Hello %s%n", name);
 
         System.out.println("It Works");
 
@@ -17,5 +17,6 @@ public class App {
         var myList = Collections.emptyList();
 
         System.out.println(myList);
+
     }
 }
