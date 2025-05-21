@@ -1,8 +1,8 @@
 package pl.gerono.ecommerce.catalog;
+import java.math.BigDecimal;
 import java.util.List;
+
 import org.junit.jupiter.api.Test;
-import pl.gerono.ecommerce.catalog.Product;
-import pl.gerono.ecommerce.catalog.ProductCatalog;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -10,19 +10,20 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ProductCatalogTest {
 
 
-    private ProductCatalog thereIsProductCatalog() {
-//        return new ProductCatalog(
-//                new HashMapProductRepository(
-//
-//                );
-//        );
-        return null;
+    public ProductCatalog thereIsProductCatalog() {
+        return new ProductCatalog(
+                new HashMapProductRepository()
+        );
     }
 
 
     @Test
-    void itAllowsToLoadProductsByItsId() {
+    void itAllowsToLoadAllProductsByTheirId() {
+        ProductCatalog productCatalog = thereIsProductCatalog();
 
+        List<Product> products = productCatalog.allProducts();
+
+        assertTrue(products.isEmpty());
     }
 
     @Test void itCantBeLowerThanZero() {
@@ -33,7 +34,7 @@ public class ProductCatalogTest {
     void itAllowsToAddProducts() {
         ProductCatalog catalog = thereIsProductCatalog();
 
-        catalog.createProduct("lego set 8083", "nice one");
+        catalog.addProduct("lego set 8083", "nice one");
 
         List<Product> products = catalog.allProducts();
         assertFalse(products.isEmpty());
@@ -51,31 +52,35 @@ public class ProductCatalogTest {
 
 
     @Test
-    void itAllowsToChangeImage() {
-//        ProductCatalog catalog = thereIsProductCatalog();
-//        String productId = catalog.createProduct("Lego set 8083", "nice one");
-//
-//        catalog.changeImage(productId, "https://picsum.photos/id/237/200/300");
-//
-//        Product loaded = catalog.loadProductById(productId);
-//        assertEquals("https://picsum.photos/id/237/200/300", loaded.getImage());
-   }
+    void itAllowsToChangePrice() throws InvalidProductPriceException {
+        ProductCatalog catalog = thereIsProductCatalog();
+        String id = catalog.addProduct("Lego set 8083", "nice one");
 
+        catalog.changePrice(id, BigDecimal.valueOf(10.10));
+        Product loaded = catalog.loadProductById(id);
 
-    @Test
-    void itAllowsToChangePrice() {
-
+        assertEquals(loaded.getPrice(), BigDecimal.valueOf(10.10));
     }
 
     @Test
     void itAllowsToListProducts() {
-        ProductCatalog catalog = thereIsProductCatalog();
+        ProductCatalog productCatalog = thereIsProductCatalog();
 
-        List<Product> products = catalog.allProducts();
+        List<Product> products = productCatalog.allProducts();
 
         assertTrue(products.isEmpty());
-
     }
 
+
+    @Test
+    void itAllowsToChangeImage() {
+        ProductCatalog catalog = thereIsProductCatalog();
+        String productId = catalog.addProduct("Lego set 8083", "nice one");
+
+        catalog.changeImage(productId, "https://picsum.photos/id/237/200/300");
+
+        Product loaded = catalog.loadProductById(productId);
+        assertEquals("https://picsum.photos/id/237/200/300", loaded.getImage());
+    }
 }
 

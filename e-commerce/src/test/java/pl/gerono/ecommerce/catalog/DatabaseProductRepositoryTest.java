@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import pl.gerono.ecommerce.catalog.Product;
-import pl.gerono.ecommerce.catalog.ProductRepository;
 
 import java.util.HashMap;
 import java.util.List;
@@ -24,7 +22,7 @@ public class DatabaseProductRepositoryTest {
 
 
     private ProductRepository thereIsProductRepository() {
-        return new DbProductRepository(jdbcTemplate);
+        return new DatabaseProductRepository(jdbcTemplate);
     }
 
 
@@ -34,11 +32,11 @@ public class DatabaseProductRepositoryTest {
 
         var sql = """
                     CREATE TABLE `product__catalog__products` (
-                    id VARCHAR(100) NOT NULL,
-                    name VARCHAR(50) NOT NULL,
-                    description VARCHAR(144) NOT NULL,
-                    cover DECIMAL(12,2),
-                    PRIMARY KEY(id)
+                        id VARCHAR(100) NOT NULL,
+                        name VARCHAR(50) NOT NULL,
+                        description VARCHAR(144) NOT NULL,
+                        cover DECIMAL(12,2),
+                        PRIMARY KEY(id)
                     );
                 """;
 
@@ -47,7 +45,7 @@ public class DatabaseProductRepositoryTest {
 
 
     @Test
-    void itQueryDb() {
+    void itQueriesDb() {
         var sql = "SELECT now() curr_time";
         var result = jdbcTemplate.queryForObject(sql, String.class);
 
@@ -75,7 +73,7 @@ public class DatabaseProductRepositoryTest {
         jdbcTemplate.execute(sql);
 
         var result = jdbcTemplate.queryForObject(
-                "SELECT COUNT(*) FROM `product__catalog__products", Integer.class);
+                "SELECT COUNT(*) FROM `product__catalog__products`", Integer.class);
 
         assert result == 2;
     }
@@ -91,7 +89,7 @@ public class DatabaseProductRepositoryTest {
         jdbcTemplate.update(sql,"c22929cc-fff6-4328-8231-8e778668bafc","product X","nice product X");
 
         var result = jdbcTemplate.queryForObject(
-                "SELECT COUNT(*) FROM `product__catalog__products",
+                "SELECT COUNT(*) FROM `product__catalog__products`",
                     Integer.class);
 
         assert result == 1;
@@ -114,7 +112,7 @@ public class DatabaseProductRepositoryTest {
         namedJdbcTemplate.update(sql,params);
 
         var result = jdbcTemplate.queryForObject(
-                "SELECT COUNT(*) FROM `product__catalog__products",
+                "SELECT COUNT(*) FROM `product__catalog__products`",
                 Integer.class);
 
         assert result == 1;
@@ -128,7 +126,7 @@ public class DatabaseProductRepositoryTest {
 
         repository.save(product);
 
-        Product loaded = repository.getProductById(product.getProductId());
+        Product loaded = repository.loadProductById(product.getId());
 
         assertEquals(product.getId(), loaded.getId());
         assertEquals(product.getName(), loaded.getName());

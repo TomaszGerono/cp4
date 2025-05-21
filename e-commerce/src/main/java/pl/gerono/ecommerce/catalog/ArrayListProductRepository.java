@@ -4,27 +4,27 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class ArrayListProductStorage implements ProductRepository {
+public class ArrayListProductRepository implements ProductRepository {
 
-    private List<Product> products; // TECH
+    private List<Product> products;
 
-    public ArrayListProductStorage() {
+    public ArrayListProductRepository() {
         this.products = new ArrayList<>();  // TECH
     }
 
     @Override
     public List<Product> allProducts() {
-        return Collections.unmodifiableList(products);    // TECH
+        return Collections.unmodifiableList(this.products); // TECH
     }
 
     @Override
     public void save(Product newProduct) {
-        products.add(newProduct);
+        this.products.add(newProduct);
     }
 
     @Override
-    public Product getProductById(String productId) {
-        return products.stream()
+    public Product loadProductById(String productId) {
+        return this.products.stream()
                 .filter(product -> product.getId().equals(productId))
                 .findFirst()
                 .get(); // TECH

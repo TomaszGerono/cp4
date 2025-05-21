@@ -7,6 +7,7 @@ public interface ProductRepository {
 
     void save(Product newProduct);
 
-    Product getProductById(String productId);
+    // Product getProductById(String productId);
 
+    Product loadProductById(String productId);
 }

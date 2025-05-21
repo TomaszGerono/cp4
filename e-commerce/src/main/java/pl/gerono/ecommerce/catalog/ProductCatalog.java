@@ -40,17 +40,26 @@ public class ProductCatalog {
 
 
 
-    public Product getProductById(String productId) {
-        return productRepository.getProductById(productId);
+    public Product loadProductById(String productId) {
+        return productRepository.loadProductById(productId);
     }
 
-    public void changePrice(String productId, BigDecimal newPrice) throws InvalidProductPriceException {
+    public void changePrice(String productId, BigDecimal newPrice) {
+
+
         if (newPrice.compareTo(BigDecimal.ZERO) < 0) {
             throw new InvalidProductPriceException();
-        }  // DOMAIN
+        }
 
-        var loadedProduct = productRepository.getProductById(productId);
+        var loadedProduct = productRepository.loadProductById(productId);
         loadedProduct.changePrice(newPrice);
+    }
+
+
+
+    public void changeImage(String productId, String imageUrl) {
+        var loadedProduct = productRepository.loadProductById(productId);
+        loadedProduct.setImage(imageUrl);
     }
 
 

@@ -4,37 +4,63 @@ import org.junit.jupiter.api.Test;
 import pl.gerono.ecommerce.catalog.Product;
 import pl.gerono.ecommerce.catalog.ProductRepository;
 
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class HashMapRepositoryTest {
+
+    private ProductRepository thereIsProductRepository() {
+        return new HashMapProductRepository();
+    }
+
+
+
+    private Product thereIsProduct() throws InvalidProductPriceException {
+        var product = new Product(UUID.randomUUID(), "example product name", "example product description");
+        product.changePrice(BigDecimal.valueOf(10.10));
+        return product;
+    }
+
+
+
+
     @Test
-    void itStoresAndLoadsProduct() {
+    void itStoresAndLoadsProduct() throws InvalidProductPriceException {
         // Arange
-        Product product = thereIsProduct();
-        ProductRepository repository = thereIsProductRepository();
+        var product = thereIsProduct();
+        var repository = thereIsProductRepository();
 
         // Act
         repository.save(product);
-
-        Product loaded = repository.getProductById(product.getId());
+        var loaded = repository.loadProductById(product.getId());
 
         // Assert
         assertEquals(product.getId(), loaded.getId());
-        assertEquals(product.getName(), loaded.getDescription());
+        assertEquals(product.getName(), loaded.getName());
     }
 
-    private ProductRepository thereIsProductRepository() {
-        return null;
-    }
 
-    private Product thereIsProduct() {
-        return null;
-    }
+
 
     @Test
-    void itLoadsAllProducts() {
+    void itStoreAndLoadsProductById() throws InvalidProductPriceException {
+        var product = thereIsProduct();
+        var repository = thereIsProductRepository();
+
+        repository.save(product);
+        var loaded = repository.loadProductById(product.getId());
+
+        assertEquals(product.getId(), loaded.getId());
+    }
+
+
+
+
+    @Test
+    void itLoadsAllProducts() throws InvalidProductPriceException {
         Product product = thereIsProduct();
         ProductRepository repository = thereIsProductRepository();
 

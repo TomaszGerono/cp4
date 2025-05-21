@@ -23,7 +23,7 @@ public class CreditCardTest {
 
 
     @Test
-    void assignInitialCredit() {
+    void itAllowsToAssignInitialCredit() {
         // Arrange
         var card = new CreditCard("1234-5678");
         // Act
@@ -81,8 +81,36 @@ public class CreditCardTest {
         );
     }
 
+
     @Test
-    void itAllowsToWithdrawSomeMoney() {
+    void itAllowsToWithdrawSomeMoneyV1() {
+        var card = new CreditCard("1234-5678");
+        card.assignCredit(BigDecimal.valueOf(1500));
+
+        card.pay(BigDecimal.valueOf(100));
+
+        assertEquals(
+                BigDecimal.valueOf(1400),
+                card.getBalance()
+        );
+    }
+
+
+    @Test
+    void itAllowsToWithdrawSomeMoneyV2() {
+        var card = new CreditCard("1234-5678");
+        card.assignCredit(BigDecimal.valueOf(1500));
+
+        assertThrows(
+                NotEnoughMoneyException.class,
+                () -> card.pay(BigDecimal.valueOf(1600))
+        );
+    }
+
+
+
+    @Test
+    void itAllowsToWithdrawSomeMoneyV3() {
         var card = new CreditCard("1234-5678");
         card.assignCredit(BigDecimal.valueOf(1000));
         card.pay(BigDecimal.valueOf(100));
@@ -93,6 +121,7 @@ public class CreditCardTest {
                 card.getBalance()
         );
     }
+
 
     @Test
     void cantWithdrawWhenNotEnoughMoney() {

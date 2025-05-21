@@ -8,10 +8,16 @@ public class Product {
     private final UUID productId;
     private final String name;
     private final String description;
+    private BigDecimal price;
+    private String url;
 
-    public String getProductId() {
-        return productId.toString();
+    public Product(UUID productId, String name, String description) {
+        this.productId = productId;
+        this.name = name;
+        this.description = description;
     }
+
+    public String getId() {return productId.toString();}
 
     public String getName() {
         return name;
@@ -21,18 +27,25 @@ public class Product {
         return description;
     }
 
-    public Product(UUID productId, String name, String description) {
 
-        this.productId = productId;
-        this.name = name;
-        this.description = description;
+    public void changePrice(BigDecimal newPrice) throws InvalidProductPriceException {
+        if (newPrice != null && newPrice.compareTo(BigDecimal.ZERO) == 1) {
+            price = newPrice;
+        }
+        else {
+            throw new InvalidProductPriceException();
+        }
     }
 
-    public String getId() {
-        return productId.toString();
+    public BigDecimal getPrice() {
+        return price;
     }
 
-    public void changePrice(BigDecimal newPrice) {
+    public void setImage(String url) {
+        this.url = url;
+    }
 
+    public String getImage() {
+        return url;
     }
 }
