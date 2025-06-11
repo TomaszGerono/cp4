@@ -1,0 +1,44 @@
+package pl.gerono.ecommerce.payu;
+
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.RestTemplate;
+
+public class PayU {
+
+    private final RestTemplate http;
+    private final PayUConfiguration cfg;
+
+
+    public PayU(RestTemplate http, PayUConfiguration cfg) {
+        this.http=http;
+        this.cfg=cfg;
+    }
+
+
+    public OrderCreateResponse handle(OrderCreateRequest request) {
+
+        request.setMerchantPosId(cfg.posId);
+        var url = getUrl("/api/v2_1/orders");
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json");
+        headers.add("Authorization", String.format("Bearer %s", getToken()));
+
+        HttpEntity<OrderCreateRequest> requestHttpEntity = new HttpEntity<>(request, headers);
+
+        ResponseEntity<OrderCreateResponse> orderCreateResponseResponseEntity = http.postForEntity(
+                url,
+                requestHttpEntity,
+                OrderCreateResponse.class
+        );
+
+        return orderCreateResponseResponseEntity.getBody();
+    }
+
+    private String getToken() {
+        var url = getUrl();
+        String body = String.format("");
+    }
+}
