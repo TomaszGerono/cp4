@@ -17,15 +17,11 @@ public class PayUConfiguration {
         this.sandbox = sandbox;
     }
 
-    public static PayUConfiguration byEnvVariables() {
-        return null;
-    }
+//    public static PayUConfigurationbyEnvVariables() {
+//        return null;
+//    }
 
-
-
-
-    public static sandbox PayUConfiguration sandbox() {
-
-        return new PayUConfiguration();
-    }
+//    public static sandbox PayUConfigurationSandbox() {
+//        return new PayUConfiguration;
+//    }
 }

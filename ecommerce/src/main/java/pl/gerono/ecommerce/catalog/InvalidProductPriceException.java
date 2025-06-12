@@ -1,4 +1,4 @@
-package pl.gerono.ecommerce.sales.catalog;
+package pl.gerono.ecommerce.catalog;
 
 public class InvalidProductPriceException extends IllegalStateException {
 }

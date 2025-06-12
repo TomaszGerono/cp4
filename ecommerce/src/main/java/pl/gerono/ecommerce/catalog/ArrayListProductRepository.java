@@ -1,10 +1,10 @@
-package pl.gerono.ecommerce.sales.catalog;
+package pl.gerono.ecommerce.catalog;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class ArrayListProductRepository implements ProductRepository {
+public class ArrayListProductRepository implements ProductStorage {
 
     private List<Product> products;
 

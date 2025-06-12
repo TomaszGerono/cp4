@@ -3,10 +3,6 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
-import pl.gerono.ecommerce.sales.catalog.HashMapProductRepository;
-import pl.gerono.ecommerce.sales.catalog.InvalidProductPriceException;
-import pl.gerono.ecommerce.sales.catalog.Product;
-import pl.gerono.ecommerce.sales.catalog.ProductCatalog;
 
 import static org.junit.jupiter.api.Assertions.*;
 

@@ -1,4 +1,4 @@
-package pl.gerono.ecommerce.sales.catalog;
+package pl.gerono.ecommerce.catalog;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

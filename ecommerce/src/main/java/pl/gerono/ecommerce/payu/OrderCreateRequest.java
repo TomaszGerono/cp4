@@ -1,19 +1,44 @@
 package pl.gerono.ecommerce.payu;
 
-import pl.gerono.ecommerce.sales.catalog.Product;
-
 import java.util.List;
+import pl.gerono.ecommerce.payu.PayUProduct;
 
 public class OrderCreateRequest {
 
-    String customerIP;
+    String notifyUrl;
+    String customerIp;
+    String merchantPosId;
+    String description;
+    String currencyCode;
+    Integer totalAmount;
+    String extOrderId;
+    Buyer buyer;
+    List<PayUProduct> products;
 
-    public String getCustomerIP() {
-        return customerIP;
+    public String getNotifyUrl() {
+        return notifyUrl;
     }
 
-    public OrderCreateRequest setCustomerIP(String customerIP) {
-        this.customerIP = customerIP;
+    public OrderCreateRequest setNotifyUrl(String notifyUrl) {
+        this.notifyUrl = notifyUrl;
+        return this;
+    }
+
+    public String getCustomerIp() {
+        return customerIp;
+    }
+
+    public OrderCreateRequest setCustomerIp(String customerIp) {
+        this.customerIp = customerIp;
+        return this;
+    }
+
+    public String getMerchantPosId() {
+        return merchantPosId;
+    }
+
+    public OrderCreateRequest setMerchantPosId(String merchantPosId) {
+        this.merchantPosId = merchantPosId;
         return this;
     }
 
@@ -35,21 +60,21 @@ public class OrderCreateRequest {
         return this;
     }
 
-    public String getTotalAmount() {
+    public Integer getTotalAmount() {
         return totalAmount;
     }
 
-    public OrderCreateRequest setTotalAmount(String totalAmount) {
+    public OrderCreateRequest setTotalAmount(Integer totalAmount) {
         this.totalAmount = totalAmount;
         return this;
     }
 
-    public List<Product> getProducts() {
-        return products;
+    public String getExtOrderId() {
+        return extOrderId;
     }
 
-    public OrderCreateRequest setProducts(List<Product> products) {
-        this.products = products;
+    public OrderCreateRequest setExtOrderId(String extOrderId) {
+        this.extOrderId = extOrderId;
         return this;
     }
 
@@ -62,20 +87,12 @@ public class OrderCreateRequest {
         return this;
     }
 
-
-    public String getExtOrderId() {
-        return ExtOrderId;
+    public List<PayUProduct> getProducts() {
+        return products;
     }
 
-    public void setExtOrderId(String extOrderId) {
-        ExtOrderId = extOrderId;
+    public OrderCreateRequest setProducts(List<PayUProduct> products) {
+        this.products = products;
+        return this;
     }
-
-    String description;
-    String currencyCode;
-    String totalAmount;
-    List<Product> products;
-    Buyer buyer;
-    String ExtOrderId;
-
 }

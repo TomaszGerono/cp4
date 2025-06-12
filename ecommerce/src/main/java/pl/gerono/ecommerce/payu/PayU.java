@@ -2,43 +2,52 @@ package pl.gerono.ecommerce.payu;
 
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 public class PayU {
+    RestTemplate http;
+    private PayUCredentials credentials;
 
-    private final RestTemplate http;
-    private final PayUConfiguration cfg;
-
-
-    public PayU(RestTemplate http, PayUConfiguration cfg) {
-        this.http=http;
-        this.cfg=cfg;
+    public PayU(RestTemplate http, PayUCredentials credentials) {
+        this.http = http;
+        this.credentials = credentials;
     }
 
-
     public OrderCreateResponse handle(OrderCreateRequest request) {
-
-        request.setMerchantPosId(cfg.posId);
         var url = getUrl("/api/v2_1/orders");
 
         HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Type", "application/json");
         headers.add("Authorization", String.format("Bearer %s", getToken()));
+        headers.add("Content-Typee", "application/json");
 
-        HttpEntity<OrderCreateRequest> requestHttpEntity = new HttpEntity<>(request, headers);
+        HttpEntity<OrderCreateRequest> headerAwareRequest = new HttpEntity<>(request, headers);
 
-        ResponseEntity<OrderCreateResponse> orderCreateResponseResponseEntity = http.postForEntity(
-                url,
-                requestHttpEntity,
-                OrderCreateResponse.class
-        );
+        ResponseEntity<OrderCreateResponse> response = http.postForEntity(
+                url, headerAwareRequest, OrderCreateResponse.class);
 
-        return orderCreateResponseResponseEntity.getBody();
+        return response.getBody();
     }
 
     private String getToken() {
-        var url = getUrl();
-        String body = String.format("");
+        var url = getUrl("/pl/standard/user/oauth/authorize");
+        String body = String.format("grant_type=client_credentials&client_id=%s&client_secret=%s",
+                credentials.getClientId(),
+                credentials.getClientSecret()
+        );
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+        HttpEntity<String> request = new HttpEntity<>(body, headers);
+
+        ResponseEntity<AuthorizationResponse> response = http.postForEntity(
+                url, request, AuthorizationResponse.class);
+
+        return response.getBody().getAccessToken();
+    }
+
+    private String getUrl(String path) {
+        return String.format("%s%s", credentials.getBaseUrl(), path);
     }
 }

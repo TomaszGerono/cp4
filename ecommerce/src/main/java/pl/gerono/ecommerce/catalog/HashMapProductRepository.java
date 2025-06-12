@@ -1,9 +1,9 @@
-package pl.gerono.ecommerce.sales.catalog;
+package pl.gerono.ecommerce.catalog;
 
 import java.util.HashMap;
 import java.util.List;
 
-public class HashMapProductRepository implements ProductRepository {
+public class HashMapProductRepository implements ProductStorage {
 
     HashMap<String, Product> productHashMap;
 

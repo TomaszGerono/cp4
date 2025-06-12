@@ -1,11 +1,10 @@
 package pl.gerono.ecommerce.payu;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Assertions.*;
-import pl.gerono.ecommerce.sales.catalog.Product;
-
+import org.springframework.web.client.RestTemplate;
 import java.util.Arrays;
 import java.util.UUID;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class PayUTest {
 
@@ -24,26 +23,36 @@ public class PayUTest {
 
         var exampleOrderCreateRequest = new OrderCreateRequest();
         exampleOrderCreateRequest
-                .setCustomerIP("127.0.0.1")
-                .setDescription("Description")
+                .setNotifyUrl("https://your.eshop.com/notify")
+                .setCustomerIp("127.0.0.1")
+                .setMerchantPosId("300746")
+                .setDescription("My digital product")
                 .setCurrencyCode("PLN")
-                .setTotalAmount("21000")
+                .setTotalAmount(15500)
                 .setExtOrderId(UUID.randomUUID().toString())
                 .setBuyer(new Buyer()
-                        .setEmailAddress("john.doe@example.com");
-                        .setFirstName("John")
-                        .setLastName("Doe")
+                        .setEmailAddress("kuba.doe@example.com")
+                        .setFirstName("john")
+                        .setLastName("doe")
+                        .setLanguage("pl")
                 )
-        .setProducts(Arrays.asList(
-                new Product()
-        ))
+                .setProducts(Arrays.asList(
+                        new PayUProduct()
+                                .setName("Nice product")
+                                .setUnitPrice(15500)
+                                .setQuantity(1)
+                ));
+
+        return exampleOrderCreateRequest;
     }
 
     private PayU thereIsPayU() {
-
-        var cfg = PayUConfiguration.sandbox()
-
-        return new PayU();
+        return new PayU(
+                new RestTemplate(),
+                PayUCredentials.sandbox(
+                        "300746",
+                        "2ee86a66e5d97e3fadc400c9f19b065d"
+                ));
     }
 
 }

@@ -1,4 +1,4 @@
-package pl.gerono.ecommerce.sales.catalog;
+package pl.gerono.ecommerce.catalog;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-public class DatabaseProductRepository implements ProductRepository {
+public class DatabaseProductRepository implements ProductStorage {
 
     private final JdbcTemplate jdbcTemplate;
 
@@ -48,7 +48,7 @@ public class DatabaseProductRepository implements ProductRepository {
                 sql,
                 new Object[]{},
                 (rs, i) -> new Product(
-                        UUID.fromString(rs.getString("ID")),
+                       UUID.fromString( rs.getString("ID")),
                         rs.getString("NAME"),
                         rs.getString("DESCRIPTION")
                 )

@@ -5,14 +5,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import pl.gerono.ecommerce.sales.catalog.ProductCatalog;
+import pl.gerono.ecommerce.catalog.ProductCatalog;
+import pl.gerono.ecommerce.sales.offering.Offer;
+import pl.gerono.ecommerce.sales.reservation.AcceptOfferRequest;
+import pl.gerono.ecommerce.sales.reservation.ReservationDetails;
 
 import java.math.BigDecimal;
-import static org.junit.jupiter.api.Assertions.*;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class SalesHTTPTest {
+public class SalesHttpTest {
     @LocalServerPort
     int port;
 
@@ -23,38 +28,44 @@ public class SalesHTTPTest {
     ProductCatalog catalog;
 
     @Test
-    void emptyOffer() {
+    void checkoutHappyPath() {
+        String productId = thereIsProduct("Example", BigDecimal.valueOf(10.10));
+        var addToCartUrl = asBaseURL(String.format("api/add-product/%s", productId));
 
-        var toBeCalledURLOffer = getBaseURL("/api/current-offer");
-        ResponseEntity<Offer> offerHttp = http.getForEntity(toBeCalledURLOffer, Offer.class);
+        ResponseEntity<Object> addToCartResponse = http.postForEntity(addToCartUrl, null, null);
 
-        assertEquals(BigDecimal.ZERO, offerHttp.getBody().getTotal());
+        var getCurrentOfferUrl = asBaseURL("api/current-offer");
+        ResponseEntity<Offer> offerResponse = http.getForEntity(getCurrentOfferUrl, Offer.class);
+
+        var acceptOfferUrl = asBaseURL("api/accept-offer");
+        var acceptOfferRequest = new AcceptOfferRequest();
+        acceptOfferRequest
+                .setFname("john")
+                .setLname("doe")
+                .setEmail("john.doe@example.com");
+
+        ResponseEntity<ReservationDetails> reservationResponse = http.postForEntity(
+                acceptOfferUrl, acceptOfferRequest, ReservationDetails.class);
+
+        var reservationDetails =reservationResponse.getBody();
+
+        assertThat(addToCartResponse.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(offerResponse.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(reservationResponse.getStatusCode()).isEqualTo(HttpStatus.OK);
+
+        assertThat(reservationDetails.getPaymentUrl()).isNotBlank();
+        assertThat(reservationDetails.getReservationId()).isNotBlank();
+
+
     }
 
-    @Test
-    void offerHappyPath() {
-        //Arrange
-        String productId = thereIsProduct("Product X", BigDecimal.valueOf(11));
-        var toBeCalledURL = getBaseURL(String.format("/api/add-product/%s", productId));
-
-        //Act
-        http.postForEntity(toBeCalledURL, null, null);
-        http.postForEntity(toBeCalledURL, null, null);
-
-        var toBeCalledURLOffer = getBaseURL("/api/current-offer");
-        ResponseEntity<Offer> offerHttp = http.getForEntity(toBeCalledURLOffer, Offer.class);
-
-        assertEquals(BigDecimal.valueOf(22), offerHttp.getBody().getTotal());
+    private String asBaseURL(String addToCartUri) {
+        return String.format("http://localhost:%s/%s", port, addToCartUri);
     }
 
-    private String thereIsProduct(String name, BigDecimal productPrice) {
-        var id = catalog.createProduct(name, "nice one");
-        catalog.changePrice(id, productPrice);
+    private String thereIsProduct(String name, BigDecimal price) {
+        var id = catalog.addProduct(name, name);
+        catalog.changePrice(id, price);
 
         return id;
     }
-
-    private String getBaseURL(String endpoint) {
-        return String.format("http://localhost:%s%s", port, endpoint);
-    }
-}

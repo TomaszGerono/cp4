@@ -1,8 +1,8 @@
-package pl.gerono.ecommerce.sales.catalog;
+package pl.gerono.ecommerce.catalog;
 
 import java.util.List;
 
-public interface ProductRepository {
+public interface ProductStorage {
     List<Product> allProducts();
 
     void save(Product newProduct);

@@ -1,4 +1,4 @@
-package pl.gerono.ecommerce.sales.catalog;
+package pl.gerono.ecommerce.catalog;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -7,7 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 @Configuration
 public class ProductCatalogConfiguration {
     @Bean
-    ProductCatalog createProductCatalog(ProductRepository productRepository) {
+    ProductCatalog createProductCatalog(ProductStorage productRepository) {
         var productCatalog = new ProductCatalog(productRepository);
 
 
@@ -20,7 +20,7 @@ public class ProductCatalogConfiguration {
 
 
     @Bean
-    ProductRepository createMyProductRepository(JdbcTemplate jdbcTemplate) {
+    ProductStorage createMyProductRepository(JdbcTemplate jdbcTemplate) {
         return new DatabaseProductRepository(jdbcTemplate);
     }
 }

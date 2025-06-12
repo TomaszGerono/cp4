@@ -1,10 +1,6 @@
 package pl.gerono.ecommerce.catalog;
 
 import org.junit.jupiter.api.Test;
-import pl.gerono.ecommerce.sales.catalog.HashMapProductRepository;
-import pl.gerono.ecommerce.sales.catalog.InvalidProductPriceException;
-import pl.gerono.ecommerce.sales.catalog.Product;
-import pl.gerono.ecommerce.sales.catalog.ProductRepository;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -14,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class HashMapRepositoryTest {
 
-    private ProductRepository thereIsProductRepository() {
+    private ProductStorage thereIsProductRepository() {
         return new HashMapProductRepository();
     }
 
@@ -64,7 +60,7 @@ public class HashMapRepositoryTest {
     @Test
     void itLoadsAllProducts() throws InvalidProductPriceException {
         Product product = thereIsProduct();
-        ProductRepository repository = thereIsProductRepository();
+        ProductStorage repository = thereIsProductRepository();
 
         repository.save(product);
 

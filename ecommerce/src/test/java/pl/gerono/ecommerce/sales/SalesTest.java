@@ -2,8 +2,8 @@ package pl.gerono.ecommerce.sales;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pl.gerono.ecommerce.sales.catalog.ArrayListProductRepository;
-import pl.gerono.ecommerce.sales.catalog.ProductCatalog;
+import pl.gerono.ecommerce.catalog.ArrayListProductRepository;
+import pl.gerono.ecommerce.catalog.ProductCatalog;
 
 import java.math.BigDecimal;
 

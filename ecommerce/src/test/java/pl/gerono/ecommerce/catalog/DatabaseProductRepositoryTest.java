@@ -6,9 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import pl.gerono.ecommerce.sales.catalog.DatabaseProductRepository;
-import pl.gerono.ecommerce.sales.catalog.Product;
-import pl.gerono.ecommerce.sales.catalog.ProductRepository;
 
 import java.util.HashMap;
 import java.util.List;
@@ -24,7 +21,7 @@ public class DatabaseProductRepositoryTest {
     JdbcTemplate jdbcTemplate;
 
 
-    private ProductRepository thereIsProductRepository() {
+    private ProductStorage thereIsProductRepository() {
         return new DatabaseProductRepository(jdbcTemplate);
     }
 
@@ -125,7 +122,7 @@ public class DatabaseProductRepositoryTest {
     @Test
     void itStoresAndLoadsProduct() {
         Product product = thereIsProduct();
-        ProductRepository repository = thereIsProductRepository();
+        ProductStorage repository = thereIsProductRepository();
 
         repository.save(product);
 
@@ -139,7 +136,7 @@ public class DatabaseProductRepositoryTest {
     @Test
     void itLoadsAllProducts() {
         Product product = thereIsProduct();
-        ProductRepository repository = thereIsProductRepository();
+        ProductStorage repository = thereIsProductRepository();
 
         repository.save(product);
 
