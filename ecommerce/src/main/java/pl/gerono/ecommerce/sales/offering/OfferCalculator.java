@@ -1,9 +1,8 @@
-package pl.gerono.ecommerce.sales.offering;
+package pl.jkanclerz.ecommerce.sales.offering;
 
+import pl.jkanclerz.ecommerce.sales.cart.CartItem;
 
 import java.util.List;
-import pl.gerono.ecommerce.sales.cart.CartItem;
-
 
 public class OfferCalculator {
     public Offer calculate(List<CartItem> items) {
@@ -13,4 +12,3 @@ public class OfferCalculator {
         return new Offer();
     }
 }
-

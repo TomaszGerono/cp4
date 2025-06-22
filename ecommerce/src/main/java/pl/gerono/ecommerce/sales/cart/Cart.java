@@ -1,5 +1,4 @@
-package pl.gerono.ecommerce.sales.cart;
-
+package pl.jkanclerz.ecommerce.sales.cart;
 
 import java.util.HashMap;
 import java.util.List;
@@ -51,4 +50,3 @@ public class Cart {
         return productsQuantities.containsKey(product);
     }
 }
-

@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pl.gerono.ecommerce.catalog.ArrayListProductRepository;
 import pl.gerono.ecommerce.catalog.ProductCatalog;
+import pl.gerono.ecommerce.sales.offering.Offer;
 
 import java.math.BigDecimal;
 

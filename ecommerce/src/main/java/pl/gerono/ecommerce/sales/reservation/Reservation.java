@@ -1,8 +1,7 @@
-package pl.gerono.ecommerce.sales.reservation;
+package pl.jkanclerz.ecommerce.sales.reservation;
 
-import pl.gerono.ecommerce.sales.offering.Offer;
-import pl.gerono.ecommerce.sales.payment.PaymentDetails;
-
+import pl.jkanclerz.ecommerce.sales.offering.Offer;
+import pl.jkanclerz.ecommerce.sales.payment.PaymentDetails;
 
 import java.math.BigDecimal;
 import java.time.Instant;
@@ -21,9 +20,9 @@ public class Reservation {
 
     public static Reservation of(String reservationId, String customerId, AcceptOfferRequest acceptOfferRequest, Offer offer, PaymentDetails paymentDetails) {
         return new Reservation(
-                reservationId,
-                new CustomerDetails(customerId, acceptOfferRequest.getFname(), acceptOfferRequest.getLname(), acceptOfferRequest.getEmail()),
-                offer.getTotal()
+            reservationId,
+            new CustomerDetails(customerId, acceptOfferRequest.getFname(), acceptOfferRequest.getLname(), acceptOfferRequest.getEmail()),
+            offer.getTotal()
         );
     }
 

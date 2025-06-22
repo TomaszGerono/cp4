@@ -11,9 +11,9 @@ public class ProductCatalogConfiguration {
         var productCatalog = new ProductCatalog(productRepository);
 
 
-        productCatalog.addProduct("Nice One 1", "nice product");
-        productCatalog.addProduct("Nice One 2", "nice product");
-        productCatalog.addProduct("Nice One 3", "nice product");
+        productCatalog.addProduct("Lorem ipsum dolor sit amet", "consectetur adipiscing elit");
+        productCatalog.addProduct("sed do eiusmod tempor incididunt", "ut labore et dolore magna aliqua");
+        productCatalog.addProduct("Ut enim ad minim veniam", "quis nostrud exercitation ullamco laboris");
 
         return productCatalog;
     }

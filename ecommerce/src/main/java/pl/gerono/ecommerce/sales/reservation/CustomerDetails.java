@@ -1,5 +1,4 @@
-package pl.gerono.ecommerce.sales.reservation;
-
+package pl.jkanclerz.ecommerce.sales.reservation;
 
 public class CustomerDetails {
     private final String customerId;

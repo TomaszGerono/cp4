@@ -1,4 +1,4 @@
-package pl.gerono.ecommerce.sales.reservation;
+package pl.jkanclerz.ecommerce.sales.reservation;
 
 import java.util.HashMap;
 import java.util.Optional;
@@ -18,4 +18,3 @@ public class ReservationRepository {
         reservations.put(reservation.getId(), reservation);
     }
 }
-

@@ -9,6 +9,7 @@ public class Product {
     private final String name;
     private final String description;
     private BigDecimal price;
+    private String image;
 
     public Product(UUID id, String name, String description) {
         this.id = id.toString();
@@ -24,11 +25,6 @@ public class Product {
         return price;
     }
 
-    public void changePrice(BigDecimal newPrice) {
-
-        this.price = newPrice;
-    }
-
     public String getName() {
         return name;
     }
@@ -36,4 +32,11 @@ public class Product {
     public Object getDescription() {
         return description;
     }
+
+    public void changePrice(BigDecimal newPrice) {this.price = newPrice;}
+
+    public void addImage(String image) {this.image = image;}
+
+    public String getImage() {return image;}
+
 }

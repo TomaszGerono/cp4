@@ -1,4 +1,4 @@
-package pl.gerono.ecommerce.sales.payment;
+package pl.jkanclerz.ecommerce.sales.payment;
 
 public class PaymentDetails {
     private final String url;

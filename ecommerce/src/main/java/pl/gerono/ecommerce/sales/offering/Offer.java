@@ -1,7 +1,6 @@
-package pl.gerono.ecommerce.sales.offering;
+package pl.jkanclerz.ecommerce.sales.offering;
 
 import java.math.BigDecimal;
-
 
 public class Offer {
     public BigDecimal getTotal() {
