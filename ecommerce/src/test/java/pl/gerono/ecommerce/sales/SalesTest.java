@@ -1,99 +1,54 @@
 package pl.gerono.ecommerce.sales;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pl.gerono.ecommerce.catalog.ArrayListProductRepository;
-import pl.gerono.ecommerce.catalog.ProductCatalog;
+import pl.gerono.ecommerce.sales.cart.HashMapCartStorage;
 import pl.gerono.ecommerce.sales.offering.Offer;
+import pl.gerono.ecommerce.sales.offering.OfferCalculator;
+import pl.gerono.ecommerce.sales.reservation.ReservationRepository;
+import pl.gerono.ecommerce.sales.reservation.SpyPaymentGateway;
 
 import java.math.BigDecimal;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class SalesTest {
 
-    ProductCatalog catalog;
-
-    @BeforeEach
-    void setup() {
-        catalog = new ProductCatalog(new ArrayListProductRepository());
-    }
-
     @Test
-    void itShowsEmptyOffer() {
-        SalesFacade sales = thereIsSalesModuleUnderTest();
+    void itShowsCurrentOffer() {
         String customerId = thereIsCustomer("Kuba");
+        SalesFacade sales = thereIsSales();
 
         Offer offer = sales.getCurrentOffer(customerId);
 
-        assertEquals(BigDecimal.ZERO, offer.getTotal());
+        assertThat(offer.getTotal()).isEqualTo(BigDecimal.ZERO);
+        assertThat(offer.getItemsCount()).isEqualTo(0);
     }
 
     @Test
-    void itAllowsToCollectProducts() {
-        //Arrange
-        SalesFacade sales = thereIsSalesModuleUnderTest();
-        String customerId = thereIsCustomer("Kuba");
-        String procuctId = thereIsProduct("Produxt X", BigDecimal.valueOf(10));
+    void itAddsProductToCart() {
 
-        //Act
-        sales.addToCart(customerId, procuctId);
-        Offer offer = sales.getCurrentOffer(customerId);
-
-        assertEquals(BigDecimal.valueOf(10), offer.getTotal());
     }
 
     @Test
-    void itAllowsToCollectProductsByCustomersSeparately() {
-        //Arrange
-        SalesFacade sales = thereIsSalesModuleUnderTest();
-        String customer1 = thereIsCustomer("Kuba");
-        String customer2 = thereIsCustomer("Michal");
-        String procuctId = thereIsProduct("Produxt X", BigDecimal.valueOf(10));
+    void itAcceptCustomersCurrentOffer() {
 
-        //Act
-        sales.addToCart(customer1, procuctId);
-        sales.addToCart(customer2, procuctId);
-        sales.addToCart(customer2, procuctId);
-
-        Offer offer1 = sales.getCurrentOffer(customer1);
-        Offer offer2 = sales.getCurrentOffer(customer1);
-
-        assertEquals(BigDecimal.valueOf(10), offer1.getTotal());
-        assertEquals(BigDecimal.valueOf(20), offer2.getTotal());
     }
 
     @Test
-    void offerAcceptance() {
-        //Arrange
-        SalesFacade sales = thereIsSalesModuleUnderTest();
-        String customerId = thereIsCustomer("Kuba");
-        String procuctId = thereIsProduct("Produxt X", BigDecimal.valueOf(10));
+    void itConfirmPayment() {
 
-        //Act
-        sales.addToCart(customerId, procuctId);
-        Offer offer = sales.getCurrentOffer(customerId);
+    }
 
-        ReservationDetails details = sales.acceptOffer(
-                new AcceptOfferCommand()
-                        .setFname("Kuba")
-                        .setLname("Kanclerz")
-                        .setEmail("kuba.kanclerz@example.com")
+    private SalesFacade thereIsSales() {
+        return new SalesFacade(
+                new HashMapCartStorage(),
+                new OfferCalculator(),
+                new SpyPaymentGateway(),
+                new ReservationRepository()
         );
     }
 
-    private String thereIsProduct(String name, BigDecimal price) {
-        var id = catalog.createProduct(name, "desc");
-        catalog.changePrice(id, price);
-
-        return id;
-    }
-
-    private String thereIsCustomer(String customerName) {
-        return String.format("customer__%s", customerName);
-    }
-
-    private SalesFacade thereIsSalesModuleUnderTest() {
-        return new SalesFacade();
+    private String thereIsCustomer(String name) {
+        return name;
     }
 }

@@ -17,6 +17,14 @@ public class Product {
         this.description = description;
     }
 
+    public Product(String id, String name, String description, BigDecimal price, String image) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.image = image;
+    }
+
     public String getId() {
         return id;
     }
@@ -29,7 +37,7 @@ public class Product {
         return name;
     }
 
-    public Object getDescription() {
+    public String getDescription() {
         return description;
     }
 

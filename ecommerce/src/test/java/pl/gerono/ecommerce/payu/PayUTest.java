@@ -2,27 +2,28 @@ package pl.gerono.ecommerce.payu;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.web.client.RestTemplate;
+
 import java.util.Arrays;
 import java.util.UUID;
+
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class PayUTest {
 
     @Test
-    void itRegistersPayment() {
-        PayU payU = thereIsPayU();
-
+    void itRegisterNewPayment() {
+        PayU payu = thereIsPayU();
         OrderCreateRequest request = thereIsExampleOrderCreateRequest();
-        OrderCreateResponse response = payU.handle(request);
 
-        assertNotNull(response.getRedirectUri());
-        assertNotNull(response.orderId());
+        OrderCreateResponse response = payu.handle(request);
+
+        assertNotNull(response.getOrderId());
+        assertNotNull(response.redirectUri());
     }
 
     private OrderCreateRequest thereIsExampleOrderCreateRequest() {
-
-        var exampleOrderCreateRequest = new OrderCreateRequest();
-        exampleOrderCreateRequest
+        var request = new OrderCreateRequest();
+        request
                 .setNotifyUrl("https://your.eshop.com/notify")
                 .setCustomerIp("127.0.0.1")
                 .setMerchantPosId("300746")
@@ -43,16 +44,15 @@ public class PayUTest {
                                 .setQuantity(1)
                 ));
 
-        return exampleOrderCreateRequest;
+        return request;
     }
 
     private PayU thereIsPayU() {
         return new PayU(
                 new RestTemplate(),
                 PayUCredentials.sandbox(
-                        "300746",
-                        "2ee86a66e5d97e3fadc400c9f19b065d"
-                ));
+                "300746",
+                "2ee86a66e5d97e3fadc400c9f19b065d"
+            ));
     }
-
 }

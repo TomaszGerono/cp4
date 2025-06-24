@@ -1,6 +1,6 @@
-package pl.jkanclerz.ecommerce.sales.payment;
+package pl.gerono.ecommerce.sales.payment;
 
-import pl.jkanclerz.ecommerce.sales.reservation.AcceptOfferRequest;
+import pl.gerono.ecommerce.sales.reservation.AcceptOfferRequest;
 
 import java.math.BigDecimal;
 

@@ -7,6 +7,7 @@ import java.util.UUID;
 public class ProductCatalog {
 
     private final ProductStorage productStorage;
+    private String image;
 
     public ProductCatalog(ProductStorage productStorage) {
         this.productStorage = productStorage;
@@ -24,6 +25,14 @@ public class ProductCatalog {
         return newProduct.getId();
     }
 
+//    public String addProduct(Product product) {
+//        String id = product.getId();
+//        String name = product.getName();
+//        String description = product.getDescription();
+//
+//        return id;
+//    }
+
     public Product getProductBy(String id) {
         return productStorage.loadProductById(id);
     }
@@ -32,8 +41,4 @@ public class ProductCatalog {
         Product loaded = productStorage.loadProductById(id);
         loaded.changePrice(newPrice);
     }
-
-
-
-
 }

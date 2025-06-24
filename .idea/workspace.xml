@@ -4,13 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eeecfbfa-afda-4f75-aebc-247a5d58011a" name="Changes" comment="Fix SalesFacade">
-      <change beforePath="$PROJECT_DIR$/.idea/TG.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="eeecfbfa-afda-4f75-aebc-247a5d58011a" name="Changes" comment="2025-06-22">
+      <change afterPath="$PROJECT_DIR$/ecommerce/src/main/java/pl/gerono/ecommerce/sales/reservation/SpyPaymentGateway.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ecommerce/src/main/java/pl/gerono/ecommerce/catalog/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/java/pl/gerono/ecommerce/catalog/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/java/pl/gerono/ecommerce/catalog/ProductCatalog.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/java/pl/gerono/ecommerce/catalog/ProductCatalog.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ecommerce/src/main/java/pl/gerono/ecommerce/catalog/ProductCatalogConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/java/pl/gerono/ecommerce/catalog/ProductCatalogConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/java/pl/gerono/ecommerce/sales/AcceptOfferCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/java/pl/gerono/ecommerce/payu/OrderCreateResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/java/pl/gerono/ecommerce/payu/OrderCreateResponse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ecommerce/src/main/java/pl/gerono/ecommerce/sales/SalesConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/java/pl/gerono/ecommerce/sales/SalesConfiguration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ecommerce/src/main/java/pl/gerono/ecommerce/sales/SalesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/java/pl/gerono/ecommerce/sales/SalesController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ecommerce/src/main/java/pl/gerono/ecommerce/sales/SalesFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/java/pl/gerono/ecommerce/sales/SalesFacade.java" afterDir="false" />
@@ -27,7 +27,16 @@
       <change beforePath="$PROJECT_DIR$/ecommerce/src/main/java/pl/gerono/ecommerce/sales/reservation/Reservation.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/java/pl/gerono/ecommerce/sales/reservation/Reservation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ecommerce/src/main/java/pl/gerono/ecommerce/sales/reservation/ReservationDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/java/pl/gerono/ecommerce/sales/reservation/ReservationDetails.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ecommerce/src/main/java/pl/gerono/ecommerce/sales/reservation/ReservationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/java/pl/gerono/ecommerce/sales/reservation/ReservationRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/test/java/pl/gerono/creditcard/CreditCardTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/test/java/pl/gerono/creditcard/CreditCardTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/test/java/pl/gerono/creditcard/NumberRepresentationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/test/java/pl/gerono/creditcard/NumberRepresentationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/test/java/pl/gerono/ecommerce/AppTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/test/java/pl/gerono/ecommerce/catalog/DatabaseProductRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/test/java/pl/gerono/ecommerce/catalog/DatabaseProductRepositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/test/java/pl/gerono/ecommerce/catalog/HashMapRepositoryTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/test/java/pl/gerono/ecommerce/catalog/ProductCatalogTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/test/java/pl/gerono/ecommerce/catalog/ProductCatalogTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/test/java/pl/gerono/ecommerce/payu/PayUTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/test/java/pl/gerono/ecommerce/payu/PayUTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/test/java/pl/gerono/ecommerce/sales/SalesHTTPTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/test/java/pl/gerono/ecommerce/sales/SalesHTTPTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ecommerce/src/test/java/pl/gerono/ecommerce/sales/SalesTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/test/java/pl/gerono/ecommerce/sales/SalesTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/test/java/pl/gerono/hello/HelloTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/test/java/pl/gerono/hello/HelloTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,6 +79,8 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Application.App.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DatabaseProductRepositoryTest.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.Ecommerce [test].executor&quot;: &quot;Run&quot;,
     &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
     &quot;Notification.DisplayName-DoNotAsk-DatabaseConfigFileWatcher.found&quot;: &quot;Database connection parameters found&quot;,
     &quot;Notification.DoNotAsk-DatabaseConfigFileWatcher.found&quot;: &quot;true&quot;,
@@ -108,6 +119,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="DatabaseProductRepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Ecommerce" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="pl.gerono.ecommerce.catalog.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="pl.gerono.ecommerce.catalog" />
+      <option name="MAIN_CLASS_NAME" value="pl.gerono.ecommerce.catalog.DatabaseProductRepositoryTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="App" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="Ecommerce" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="pl.gerono.ecommerce.App" />
@@ -124,6 +150,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.App" />
+        <item itemvalue="JUnit.DatabaseProductRepositoryTest" />
         <item itemvalue="Application.App" />
       </list>
     </recent_temporary>
@@ -145,7 +172,17 @@
       <updated>1750624835857</updated>
       <workItem from="1750624836916" duration="2036000" />
       <workItem from="1750626880575" duration="180000" />
-      <workItem from="1750627137535" duration="306000" />
+      <workItem from="1750627137535" duration="1865000" />
+      <workItem from="1750629196515" duration="214000" />
+      <workItem from="1750629685428" duration="32000" />
+      <workItem from="1750629726894" duration="17000" />
+      <workItem from="1750629753433" duration="14000" />
+      <workItem from="1750629772982" duration="9000" />
+      <workItem from="1750629791620" duration="806000" />
+      <workItem from="1750699161701" duration="22000" />
+      <workItem from="1750699444911" duration="640000" />
+      <workItem from="1750797614122" duration="4000" />
+      <workItem from="1750797676469" duration="27000" />
     </task>
     <task id="LOCAL-00001" summary="Modify SalesFacade">
       <option name="closed" value="true" />
@@ -171,7 +208,15 @@
       <option name="project" value="LOCAL" />
       <updated>1750626592483</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="2025-06-22">
+      <option name="closed" value="true" />
+      <created>1750627475885</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1750627475885</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -181,6 +226,7 @@
     <MESSAGE value="Modify SalesFacade" />
     <MESSAGE value="Add ReservationRepository" />
     <MESSAGE value="Fix SalesFacade" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix SalesFacade" />
+    <MESSAGE value="2025-06-22" />
+    <option name="LAST_COMMIT_MESSAGE" value="2025-06-22" />
   </component>
 </project>

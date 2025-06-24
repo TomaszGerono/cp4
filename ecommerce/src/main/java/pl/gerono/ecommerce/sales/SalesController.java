@@ -1,9 +1,9 @@
-package pl.jkanclerz.ecommerce.sales;
+package pl.gerono.ecommerce.sales;
 
 import org.springframework.web.bind.annotation.*;
-import pl.jkanclerz.ecommerce.sales.offering.Offer;
-import pl.jkanclerz.ecommerce.sales.reservation.AcceptOfferRequest;
-import pl.jkanclerz.ecommerce.sales.reservation.ReservationDetails;
+import pl.gerono.ecommerce.sales.offering.Offer;
+import pl.gerono.ecommerce.sales.reservation.AcceptOfferRequest;
+import pl.gerono.ecommerce.sales.reservation.ReservationDetails;
 
 @RestController
 public class SalesController {

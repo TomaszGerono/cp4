@@ -1,4 +1,4 @@
-package pl.gerono.creditcard;
+package pl.jkanclerz.creditcard;
 
 import org.junit.jupiter.api.Test;
 
@@ -7,139 +7,90 @@ import java.math.BigDecimal;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CreditCardTest {
-
     @Test
-    void cardIsIdentifiedWithNumber() {
-        // Arrange   // Given   // Input
-        var number = "1234-5678";
-        // Act      // When     // Action
-        var card = new CreditCard(number);
-        // Assert   // Then     // Output
+    void itAllowsToAssignCredit() {
+        //Arrange
+        CreditCard card = new CreditCard();
+        //Act
+        card.assignCredit(BigDecimal.valueOf(1000));
+        //Assert
         assertEquals(
-                "1234-5678",
-                card.getNumber()
+            BigDecimal.valueOf(1000),
+            card.getBalance()
         );
     }
 
-
     @Test
-    void itAllowsToAssignInitialCredit() {
-        // Arrange
-        var card = new CreditCard("1234-5678");
-        // Act
-        card.assignCredit(BigDecimal.valueOf(1500));
-        // Assert
+    void itAllowsToAssignCreditV2() {
+        //Arrange
+        CreditCard card = new CreditCard();
+        //Act
+        card.assignCredit(BigDecimal.valueOf(1200));
+        //Assert
+        assert BigDecimal.valueOf(1200).equals(card.getBalance());
         assertEquals(
-                BigDecimal.valueOf(1500),
+                BigDecimal.valueOf(1200),
                 card.getBalance()
         );
     }
 
     @Test
-    void limitCantBeLowerThanThreshold() {
-        var card = new CreditCard("1234-5678");
+    void itDenyCreditBelowThresholdV1() {
+        CreditCard card = new CreditCard();
         try {
             card.assignCredit(BigDecimal.valueOf(50));
-            fail("Exception should be thrown");
-        }
-        catch (CreditBelowThresholdException e) {
+            fail("Should throw exception");
+        } catch (CreditBelowThresholdException e) {
             assertTrue(true);
         }
     }
 
-
     @Test
-    void limitCantBeLowerThanThresholdV2() {
-        var card = new CreditCard("1234-5678");
-        assertThrows(
-                 CreditBelowThresholdException.class,
-                 () -> card.assignCredit(BigDecimal.valueOf(99))
-         );
+    void itDenyCreditBelowThresholdV2() {
+        CreditCard card = new CreditCard();
+        //python // lambda x: x + 2
+        //java // (x) -> x + 2
 
-    }
-
-    @Test
-    void limitCantBeLowerThanThresholdV3() {
-        var card = new CreditCard("1234-5678");
         assertThrows(
                 CreditBelowThresholdException.class,
-                () -> card.assignCredit(BigDecimal.valueOf(99))
-        );
-
-        assertDoesNotThrow(
-                () -> card.assignCredit(BigDecimal.valueOf(100))
+                () -> card.assignCredit(BigDecimal.valueOf(10))
         );
     }
 
     @Test
-    void creditCantBeAssignedTwice() {
-        var card = new CreditCard("1234-5678");
+    void itDenyCreditReassignment() {
+        CreditCard card = new CreditCard();
         card.assignCredit(BigDecimal.valueOf(1000));
         assertThrows(
-                CreditCantBeAssignedTwiceException.class,
-                () -> card.assignCredit(BigDecimal.valueOf(1500))
+                CreditAlreadyAssignedException.class,
+                () -> card.assignCredit(BigDecimal.valueOf(1200))
         );
     }
 
-
     @Test
-    void itAllowsToWithdrawSomeMoneyV1() {
-        var card = new CreditCard("1234-5678");
-        card.assignCredit(BigDecimal.valueOf(1500));
+    void itAllowsToPayForSomething() {
+        CreditCard card = new CreditCard();
+        card.assignCredit(BigDecimal.valueOf(1000));
 
-        card.pay(BigDecimal.valueOf(100));
+        card.pay(BigDecimal.valueOf(900));
 
         assertEquals(
-                BigDecimal.valueOf(1400),
+                BigDecimal.valueOf(100),
                 card.getBalance()
         );
     }
 
-
     @Test
-    void itAllowsToWithdrawSomeMoneyV2() {
-        var card = new CreditCard("1234-5678");
-        card.assignCredit(BigDecimal.valueOf(1500));
+    void itDenyWhenNotSufficientFounds() {
+        CreditCard card = new CreditCard();
+        card.assignCredit(BigDecimal.valueOf(1000));
+        card.pay(BigDecimal.valueOf(900));
 
         assertThrows(
                 NotEnoughMoneyException.class,
-                () -> card.pay(BigDecimal.valueOf(1600))
+                () -> card.pay(BigDecimal.valueOf(200))
         );
     }
 
 
-
-    @Test
-    void itAllowsToWithdrawSomeMoneyV3() {
-        var card = new CreditCard("1234-5678");
-        card.assignCredit(BigDecimal.valueOf(1000));
-        card.pay(BigDecimal.valueOf(100));
-        card.pay(BigDecimal.valueOf(100));
-        card.pay(BigDecimal.valueOf(100));
-        assertEquals(
-                BigDecimal.valueOf(700),
-                card.getBalance()
-        );
-    }
-
-
-    @Test
-    void cantWithdrawWhenNotEnoughMoney() {
-        var card = new CreditCard("1234-5678");
-        card.assignCredit(BigDecimal.valueOf(1000));
-        card.pay(BigDecimal.valueOf(100));
-        assertThrows(
-                NotEnoughMoneyException.class,
-                () -> card.pay(BigDecimal.valueOf(950))
-        );
-    }
-
-    @Test
-    void canWithdrawWhenSpendingTotalCredit() {
-        var card = new CreditCard("1234-5678");
-        card.assignCredit(BigDecimal.valueOf(1000));
-        assertDoesNotThrow(
-                () -> card.pay(BigDecimal.valueOf(1000))
-        );
-    }
 }

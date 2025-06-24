@@ -1,16 +1,16 @@
-package pl.jkanclerz.ecommerce.sales;
+package pl.gerono.ecommerce.sales;
 
-import pl.jkanclerz.ecommerce.sales.cart.Cart;
-import pl.jkanclerz.ecommerce.sales.cart.HashMapCartStorage;
-import pl.jkanclerz.ecommerce.sales.offering.Offer;
-import pl.jkanclerz.ecommerce.sales.offering.OfferCalculator;
-import pl.jkanclerz.ecommerce.sales.payment.PaymentDetails;
-import pl.jkanclerz.ecommerce.sales.payment.PaymentGateway;
-import pl.jkanclerz.ecommerce.sales.payment.RegisterPaymentRequest;
-import pl.jkanclerz.ecommerce.sales.reservation.AcceptOfferRequest;
-import pl.jkanclerz.ecommerce.sales.reservation.Reservation;
-import pl.jkanclerz.ecommerce.sales.reservation.ReservationDetails;
-import pl.jkanclerz.ecommerce.sales.reservation.ReservationRepository;
+import pl.gerono.ecommerce.sales.cart.Cart;
+import pl.gerono.ecommerce.sales.cart.HashMapCartStorage;
+import pl.gerono.ecommerce.sales.offering.Offer;
+import pl.gerono.ecommerce.sales.offering.OfferCalculator;
+import pl.gerono.ecommerce.sales.payment.PaymentDetails;
+import pl.gerono.ecommerce.sales.payment.PaymentGateway;
+import pl.gerono.ecommerce.sales.payment.RegisterPaymentRequest;
+import pl.gerono.ecommerce.sales.reservation.AcceptOfferRequest;
+import pl.gerono.ecommerce.sales.reservation.Reservation;
+import pl.gerono.ecommerce.sales.reservation.ReservationDetails;
+import pl.gerono.ecommerce.sales.reservation.ReservationRepository;
 
 import java.util.UUID;
 

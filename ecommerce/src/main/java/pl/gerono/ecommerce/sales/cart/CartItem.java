@@ -1,4 +1,4 @@
-package pl.jkanclerz.ecommerce.sales.cart;
+package pl.gerono.ecommerce.sales.cart;
 
 public class CartItem {
     private String productId;

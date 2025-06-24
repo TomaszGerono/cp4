@@ -1,6 +1,6 @@
-package pl.jkanclerz.ecommerce.sales.offering;
+package pl.gerono.ecommerce.sales.offering;
 
-import pl.jkanclerz.ecommerce.sales.cart.CartItem;
+import pl.gerono.ecommerce.sales.cart.CartItem;
 
 import java.util.List;
 

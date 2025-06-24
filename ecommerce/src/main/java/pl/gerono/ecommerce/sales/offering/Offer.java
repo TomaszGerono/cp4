@@ -1,4 +1,4 @@
-package pl.jkanclerz.ecommerce.sales.offering;
+package pl.gerono.ecommerce.sales.offering;
 
 import java.math.BigDecimal;
 

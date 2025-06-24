@@ -1,4 +1,4 @@
-package pl.jkanclerz.ecommerce.sales.reservation;
+package pl.gerono.ecommerce.sales.reservation;
 
 public class ReservationDetails {
     private String reservationId;
